@@ -7,6 +7,8 @@
   <title>ABOUT BERRY</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -63,7 +65,12 @@
       border: 1px solid rgba(255, 255, 255, 0.22);
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
       backdrop-filter: blur(18px);
-      animation: fadeUp 0.8s ease;
+      animation: slideUp 0.8s ease;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
     }
 
     @keyframes fadeUp {
@@ -138,6 +145,13 @@
       transition: transform 0.2s ease, background 0.2s ease;
     }
 
+    .lang-btn.active {
+      background: white;
+      color: #111827;
+      border: 1px solid white;
+      box-shadow: 0 0 18px rgba(255, 255, 255, 0.28);
+    }
+
     .lang-btn:hover {
       transform: scale(1.04);
       background: white;
@@ -174,7 +188,8 @@
     .link-button:hover {
       transform: translateY(-3px);
       background: rgba(255, 255, 255, 0.24);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+
     }
 
     .main-link {
@@ -207,14 +222,13 @@
     }
 
     .lang-btn {
-      padding: 10px 18px;
-      border: none;
+      padding: 10px 22px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.14);
       color: white;
       cursor: pointer;
       font-weight: bold;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.28);
       transition: 0.2s;
     }
 
@@ -223,10 +237,133 @@
       color: #111827;
       transform: translateY(-2px);
     }
+
+    #time {
+      color: #e5e7eb;
+      font-size: 10px;
+      margin-bottom: 14px;
+      font-family: 'Press Start 2P', monospace;
+      animation: blink 1s infinite;
+    }
+
+    .music-toggle {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+
+      padding: 8px 14px;
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+
+      cursor: pointer;
+
+      font-size: 13px;
+      font-weight: bold;
+
+      transition: 0.2s;
+    }
+
+    .music-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      margin-bottom: 18px;
+
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border-radius: 50%;
+
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      color: white;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+    }
+
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: 0.6s;
+    }
+
+    .card {
+      animation: slideUp 0.8s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .link-button {
+      animation: fadeInButton 0.8s ease;
+    }
+
+    @keyframes fadeInButton {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.6;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+    }
   </style>
 </head>
 
 <body>
+
+  <div id="loader">
+    <p>Loading...</p>
+  </div>
+
   <main class="card">
     <div class="avatar-wrap">
       <img class="avatar" src="profile.png" alt="Berry photo" />
@@ -234,6 +371,11 @@
 
     <h1>Berry</h1>
     <p class="username">@zhongti0126</p>
+    <div class="status">
+      <span class="dot"></span>
+      <span id="statusText">Currently learning frontend</span>
+    </div>
+    <p id="time"></p>
 
     <div class="tag-row" id="tags">
       <span class="tag">CS Student</span>
@@ -242,11 +384,11 @@
     </div>
 
     <div class="lang-switch">
-      <button onclick="setEnglish()" class="lang-btn">
+      <button onclick="setEnglish()" class="lang-btn active" id="englishBtn">
         English
       </button>
 
-      <button onclick="setChinese()" class="lang-btn">
+      <button onclick="setChinese()" class="lang-btn" id="chineseBtn">
         中文
       </button>
     </div>
@@ -263,19 +405,25 @@
     </p>
 
     <section class="links">
-      <a class="link-button main-link" href="https://www.instagram.com/zhongti0126/" target="_blank">
+      <a id="instagramBtn" class="link-button main-link" href="https://www.instagram.com/zhongti0126/" target="_blank">
         ✨ Instagram
       </a>
-      <a class="link-button secondary" href="https://github.com/zhongti0126" target="_blank">
+
+      <a id="githubBtn" class="link-button secondary" href="https://github.com/zhongti0126" target="_blank">
         💻 GitHub
       </a>
-      <a class="link-button" href="mailto:zhongti.official@gmail.com">
+
+      <a id="contactBtn" class="link-button" href="mailto:zhongti.official@gmail.com">
         ✉️ Contact Me
       </a>
-      <!-- <a class="link-button" href="https://github.com/zhongti0126" target="_blank">💻 GitHub</a> -->
+
+      <div class="music-toggle" onclick="toggleMusic()">
+        <span id="music-status">🔇</span>
+      </div>
+
     </section>
 
-    <p class="footer">Made by Berry</p>
+    <p class="footer" id="footer">Made by Berry</p>
   </main>
 
   <script>
@@ -292,53 +440,80 @@
     const music = document.getElementById("bg-music");
     let playing = false;
 
+    function updateTime() {
+
+      const now = new Date();
+
+      document.getElementById("time").innerHTML =
+        now.toLocaleTimeString();
+    }
+
+    setInterval(updateTime, 1000);
+
     function toggleMusic() {
+      const status = document.getElementById("music-status");
 
       if (!playing) {
         music.play();
         playing = true;
+        status.textContent = "🔈";
       } else {
         music.pause();
         playing = false;
+        status.textContent = "🔇";
       }
     }
 
     function setChinese() {
 
-      const bio = document.getElementById("bio");
-      const tags = document.getElementById("tags");
-
-      bio.innerHTML = `
-    印尼 × 台灣<br>
-    在台灣讀讀書的小朋友<br>
-    喜歡語言、寫程式與創作
-  `;
-
-      tags.innerHTML = `
+      document.getElementById("chineseBtn").classList.add("active");
+      document.getElementById("englishBtn").classList.remove("active");
+      document.getElementById("statusText").textContent = "正在學習前端";
+      document.getElementById("tags").innerHTML = `
     <span class="tag">資工系</span>
     <span class="tag">語言學習中</span>
     <span class="tag">創作新手</span>
   `;
+
+      document.getElementById("bio").innerHTML = `
+    印尼 × 台灣<br>
+    在台灣讀資工<br>
+    喜歡語言、寫程式與創作
+  `;
+
+      document.getElementById("instagramBtn").innerHTML = "✨ Instagram";
+      document.getElementById("githubBtn").innerHTML = "💻 GitHub";
+      document.getElementById("contactBtn").innerHTML = "✉️ 聯絡我";
+      document.getElementById("footer").textContent = "由 Berry 製作";
     }
 
     function setEnglish() {
+      document.getElementById("englishBtn").classList.add("active");
+      document.getElementById("chineseBtn").classList.remove("active");
+      document.getElementById("statusText").textContent = "Currently learning frontend";
+      document.getElementById("tags").innerHTML = `
+    <span class="tag">CS Student</span>
+    <span class="tag">Language Learner</span>
+    <span class="tag">Creative Beginner</span>
+  `;
 
-      const bio = document.getElementById("bio");
-      const tags = document.getElementById("tags");
-
-      bio.innerHTML = `
+      document.getElementById("bio").innerHTML = `
     Indonesian × Taiwanese<br>
     CS student in Taiwan<br>
     Learning languages, coding, and creating things.
   `;
 
-      tags.innerHTML = `
-    <span class="tag">CS Student</span>
-    <span class="tag">Language Learner</span>
-    <span class="tag">Creative Beginner</span>
-  `;
+      document.getElementById("instagramBtn").innerHTML = "✨ Instagram";
+      document.getElementById("githubBtn").innerHTML = "💻 GitHub";
+      document.getElementById("contactBtn").innerHTML = "✉️ Contact Me";
+      document.getElementById("footer").textContent = "Made by Berry";
     }
 
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loader").classList.add("hide");
+      }, 900);
+    });
 
   </script>
 </body>
