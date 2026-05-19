@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABOUT BERRY</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.45), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.35), transparent 35%),
+        linear-gradient(135deg, #0f172a, #111827, #312e81);
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      top: -100px;
+      right: -80px;
+      filter: blur(2px);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      bottom: -70px;
+      left: -60px;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 390px;
+      padding: 30px 24px;
+      text-align: center;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(18px);
+      animation: fadeUp 0.8s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .avatar-wrap {
+      width: 142px;
+      height: 142px;
+      margin: 0 auto 18px;
+      padding: 5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #818cf8, #f472b6, #facc15);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.38);
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #111827;
+      display: block;
+    }
+
+    h1 {
+      font-size: 34px;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .username {
+      color: #c7d2fe;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .tag-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #f8fafc;
+    }
+
+    .lang-btn {
+      margin-bottom: 20px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #111827;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      transform: scale(1.04);
+      background: white;
+    }
+
+    .bio {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #e5e7eb;
+      margin-bottom: 26px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .link-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      color: white;
+      padding: 15px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .link-button:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.24);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+    }
+
+    .main-link {
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      border: none;
+    }
+
+    .footer {
+      margin-top: 24px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        padding: 28px 20px;
+        border-radius: 30px;
+      }
+
+      h1 {
+        font-size: 31px;
+      }
+    }
+
+    .lang-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .lang-btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: white;
+      color: #111827;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="avatar-wrap">
+      <img class="avatar" src="profile.png" alt="Berry photo" />
+    </div>
+
+    <h1>Berry</h1>
+    <p class="username">@zhongti0126</p>
+
+    <div class="tag-row" id="tags">
+      <span class="tag">CS Student</span>
+      <span class="tag">Language Learner</span>
+      <span class="tag">Creative Beginner</span>
+    </div>
+
+    <div class="lang-switch">
+      <button onclick="setEnglish()" class="lang-btn">
+        English
+      </button>
+
+      <button onclick="setChinese()" class="lang-btn">
+        中文
+      </button>
+    </div>
+
+
+    <audio id="bg-music" autoplay loop>
+      <source src="bg.mp3" type="audio/mp3">
+    </audio>
+
+    <p class="bio" id="bio">
+      Indonesian × Taiwanese<br>
+      CS student in Taiwan<br>
+      Learning languages, coding, and creating things
+    </p>
+
+    <section class="links">
+      <a class="link-button main-link" href="https://www.instagram.com/zhongti0126/" target="_blank">
+        ✨ Instagram
+      </a>
+      <a class="link-button secondary" href="https://github.com/zhongti0126" target="_blank">
+        💻 GitHub
+      </a>
+      <a class="link-button" href="mailto:zhongti.official@gmail.com">
+        ✉️ Contact Me
+      </a>
+      <!-- <a class="link-button" href="https://github.com/zhongti0126" target="_blank">💻 GitHub</a> -->
+    </section>
+
+    <p class="footer">Made by Berry</p>
+  </main>
+
+  <script>
+    document.body.addEventListener("touchstart", () => {
+      music.play();
+    }, { once: true });
+
+    document.body.addEventListener("click", () => {
+      music.play();
+    }, { once: true });
+
+    let chinese = false;
+
+    const music = document.getElementById("bg-music");
+    let playing = false;
+
+    function toggleMusic() {
+
+      if (!playing) {
+        music.play();
+        playing = true;
+      } else {
+        music.pause();
+        playing = false;
+      }
+    }
+
+    function setChinese() {
+
+      const bio = document.getElementById("bio");
+      const tags = document.getElementById("tags");
+
+      bio.innerHTML = `
+    印尼 × 台灣<br>
+    在台灣讀讀書的小朋友<br>
+    喜歡語言、寫程式與創作
+  `;
+
+      tags.innerHTML = `
+    <span class="tag">資工系</span>
+    <span class="tag">語言學習中</span>
+    <span class="tag">創作新手</span>
+  `;
+    }
+
+    function setEnglish() {
+
+      const bio = document.getElementById("bio");
+      const tags = document.getElementById("tags");
+
+      bio.innerHTML = `
+    Indonesian × Taiwanese<br>
+    CS student in Taiwan<br>
+    Learning languages, coding, and creating things.
+  `;
+
+      tags.innerHTML = `
+    <span class="tag">CS Student</span>
+    <span class="tag">Language Learner</span>
+    <span class="tag">Creative Beginner</span>
+  `;
+    }
+
+
+  </script>
+</body>
+
+</html>
