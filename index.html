@@ -57,8 +57,6 @@
       left: -60px;
     }
 
-
-
     .particles {
       position: fixed;
       inset: 0;
@@ -78,16 +76,83 @@
       animation: floatParticle linear infinite;
     }
 
-    .particle:nth-child(1) { left: 8%; animation-duration: 9s; animation-delay: 0s; }
-    .particle:nth-child(2) { left: 18%; width: 4px; height: 4px; animation-duration: 12s; animation-delay: 2s; }
-    .particle:nth-child(3) { left: 28%; width: 9px; height: 9px; animation-duration: 10s; animation-delay: 4s; }
-    .particle:nth-child(4) { left: 42%; width: 5px; height: 5px; animation-duration: 14s; animation-delay: 1s; }
-    .particle:nth-child(5) { left: 55%; width: 8px; height: 8px; animation-duration: 11s; animation-delay: 3s; }
-    .particle:nth-child(6) { left: 68%; width: 4px; height: 4px; animation-duration: 13s; animation-delay: 5s; }
-    .particle:nth-child(7) { left: 78%; width: 10px; height: 10px; animation-duration: 9s; animation-delay: 2.5s; }
-    .particle:nth-child(8) { left: 88%; width: 6px; height: 6px; animation-duration: 15s; animation-delay: 1.5s; }
-    .particle:nth-child(9) { left: 35%; width: 3px; height: 3px; animation-duration: 16s; animation-delay: 6s; }
-    .particle:nth-child(10) { left: 62%; width: 6px; height: 6px; animation-duration: 12s; animation-delay: 7s; }
+    .particle:nth-child(1) {
+      left: 8%;
+      animation-duration: 9s;
+      animation-delay: 0s;
+    }
+
+    .particle:nth-child(2) {
+      left: 18%;
+      width: 4px;
+      height: 4px;
+      animation-duration: 12s;
+      animation-delay: 2s;
+    }
+
+    .particle:nth-child(3) {
+      left: 28%;
+      width: 9px;
+      height: 9px;
+      animation-duration: 10s;
+      animation-delay: 4s;
+    }
+
+    .particle:nth-child(4) {
+      left: 42%;
+      width: 5px;
+      height: 5px;
+      animation-duration: 14s;
+      animation-delay: 1s;
+    }
+
+    .particle:nth-child(5) {
+      left: 55%;
+      width: 8px;
+      height: 8px;
+      animation-duration: 11s;
+      animation-delay: 3s;
+    }
+
+    .particle:nth-child(6) {
+      left: 68%;
+      width: 4px;
+      height: 4px;
+      animation-duration: 13s;
+      animation-delay: 5s;
+    }
+
+    .particle:nth-child(7) {
+      left: 78%;
+      width: 10px;
+      height: 10px;
+      animation-duration: 9s;
+      animation-delay: 2.5s;
+    }
+
+    .particle:nth-child(8) {
+      left: 88%;
+      width: 6px;
+      height: 6px;
+      animation-duration: 15s;
+      animation-delay: 1.5s;
+    }
+
+    .particle:nth-child(9) {
+      left: 35%;
+      width: 3px;
+      height: 3px;
+      animation-duration: 16s;
+      animation-delay: 6s;
+    }
+
+    .particle:nth-child(10) {
+      left: 62%;
+      width: 6px;
+      height: 6px;
+      animation-duration: 12s;
+      animation-delay: 7s;
+    }
 
     @keyframes floatParticle {
       0% {
@@ -191,7 +256,6 @@
     }
 
     .lang-btn {
-      margin-bottom: 20px;
       padding: 10px 18px;
       border: none;
       border-radius: 999px;
@@ -203,10 +267,15 @@
     }
 
     .lang-btn.active {
+
       background: white;
+
       color: #111827;
-      border: 1px solid white;
-      box-shadow: 0 0 18px rgba(255, 255, 255, 0.28);
+
+      box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.28);
+
+      transform: translateY(-1px);
     }
 
     .lang-btn:hover {
@@ -272,21 +341,50 @@
     }
 
     .lang-switch {
+
       display: flex;
+
       justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      align-items: center;
+
+      gap: 6px;
+
+      width: 100%;
+
+      padding: 4px 6px;
+
+      margin-bottom: 24px;
+
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.08);
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+
+      flex-wrap: nowrap;
     }
 
     .lang-btn {
-      padding: 10px 22px;
+
+      flex: 1;
+
+      padding: 10px 8px;
+
+      border: none;
+
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.14);
-      color: white;
-      cursor: pointer;
+
+      background: transparent;
+
+      color: #dbe4ff;
+
+      font-size: 13px;
+
       font-weight: bold;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      transition: 0.2s;
+
+      cursor: pointer;
+
+      white-space: nowrap;
     }
 
     .lang-btn:hover {
@@ -369,6 +467,112 @@
 
     .card {
       animation: slideUp 0.8s ease;
+    }
+
+    .music-player {
+      margin-bottom: 24px;
+      padding: 14px;
+
+      border-radius: 22px;
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+
+      backdrop-filter: blur(10px);
+    }
+
+    .vinyl-wrap {
+      width: 70px;
+      height: 70px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .vinyl {
+      width: 70px;
+      height: 70px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle at center,
+          #111 10%,
+          #222 11%,
+          #000 60%,
+          #111 100%);
+
+      border: 3px solid rgba(255, 255, 255, 0.15);
+
+      animation: spin 4s linear infinite;
+
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .music-info {
+      flex: 1;
+      text-align: left;
+    }
+
+    .now-playing {
+      font-size: 12px;
+      color: #cbd5e1;
+
+      margin-bottom: 6px;
+    }
+
+    .music-info h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 6px;
+
+      border-radius: 999px;
+      overflow: hidden;
+
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .progress-bar {
+      width: 40%;
+      height: 100%;
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(90deg,
+          #818cf8,
+          #ec4899);
+
+      animation: progressMove 6s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes progressMove {
+      0% {
+        width: 0%;
+      }
+
+      100% {
+        width: 100%;
+      }
     }
 
     @keyframes slideUp {
@@ -461,11 +665,31 @@
       <button onclick="setChinese()" class="lang-btn" id="chineseBtn">
         中文
       </button>
+
+      <button onclick="setJapanese()" class="lang-btn" id="japaneseBtn">
+        日本語
+      </button>
+
     </div>
 
+    <div class="music-player">
 
-    <audio id="bg-music" autoplay loop>
-      <source src="bg.mp3" type="audio/mp3">
+      <div class="vinyl-wrap">
+        <div class="vinyl"></div>
+      </div>
+
+      <div class="music-info">
+        <p class="now-playing">🎵 Now Playing</p>
+
+        <h3>Pokemon Littleroot town</h3>
+
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+
+    </div>
+    <source src="bg.mp3" type="audio/mp3">
     </audio>
 
     <p class="bio" id="bio">
@@ -547,7 +771,7 @@
 
       document.getElementById("bio").innerHTML = `
     印尼 × 台灣<br>
-    在台灣讀資工<br>
+    在台灣讀的小朋友<br>
     喜歡語言、寫程式與創作
   `;
 
@@ -579,9 +803,74 @@
       document.getElementById("footer").textContent = "Made by Berry";
     }
 
+    function setJapanese() {
+
+      document.getElementById("japaneseBtn").classList.add("active");
+      document.getElementById("englishBtn").classList.remove("active");
+      document.getElementById("chineseBtn").classList.remove("active");
+
+      document.getElementById("statusText").textContent =
+        "フロントエンド勉強中";
+
+      document.getElementById("tags").innerHTML = `
+    <span class="tag">情報工学</span>
+    <span class="tag">語学学習中</span>
+    <span class="tag">クリエイター初心者</span>
+  `;
+
+      document.getElementById("bio").innerHTML = `
+    インドネシア × 台湾　ハーフ<br>
+    台湾で情報工学を勉強しています<br>
+    語学・プログラミング・創作が好き
+  `;
+
+      document.getElementById("instagramBtn").innerHTML =
+        "✨ インスタ";
+
+      document.getElementById("githubBtn").innerHTML =
+        "💻 GitHub";
+
+      document.getElementById("contactBtn").innerHTML =
+        "✉️ お問い合わせ";
+
+      document.getElementById("footer").textContent =
+        "Berryが制作";
+    }
+
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("loader").classList.add("hide");
+      }, 900);
+    });
+
+    const text = `
+Indonesian × Taiwanese
+CS student in Taiwan
+Learning languages, coding, and creating things
+`;
+
+    let index = 0;
+
+    function typeEffect() {
+
+      if (index < text.length) {
+
+        document.getElementById("bio").innerHTML += text.charAt(index);
+
+        index++;
+
+        setTimeout(typeEffect, 45);
+      }
+    }
+
+    window.addEventListener("load", () => {
+
+      setTimeout(() => {
+
+        document.getElementById("loader").classList.add("hide");
+
+        typeEffect();
+
       }, 900);
     });
 
