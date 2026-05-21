@@ -672,7 +672,11 @@
 
     </div>
 
-    <div class="music-player">
+    <audio id="bg-music" loop preload="auto">
+      <source src="bg.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="music-player" onclick="toggleMusic()">
 
       <div class="vinyl-wrap">
         <div class="vinyl"></div>
@@ -689,8 +693,6 @@
       </div>
 
     </div>
-    <source src="bg.mp3" type="audio/mp3">
-    </audio>
 
     <p class="bio" id="bio">
       Indonesian × Taiwanese<br>
@@ -721,18 +723,28 @@
   </main>
 
   <script>
-    document.body.addEventListener("touchstart", () => {
-      music.play();
-    }, { once: true });
-
-    document.body.addEventListener("click", () => {
-      music.play();
-    }, { once: true });
-
     let chinese = false;
 
     const music = document.getElementById("bg-music");
+    const musicStatus = document.getElementById("music-status");
     let playing = false;
+
+    function setMusicUI(isPlaying) {
+      playing = isPlaying;
+      musicStatus.textContent = isPlaying ? "🔈" : "🔇";
+    }
+
+    function tryAutoPlay() {
+      music.volume = 0.45;
+
+      music.play()
+        .then(() => {
+          setMusicUI(true);
+        })
+        .catch(() => {
+          setMusicUI(false);
+        });
+    }
 
     function updateTime() {
 
@@ -745,16 +757,18 @@
     setInterval(updateTime, 1000);
 
     function toggleMusic() {
-      const status = document.getElementById("music-status");
-
-      if (!playing) {
-        music.play();
-        playing = true;
-        status.textContent = "🔈";
+      if (music.paused) {
+        music.play()
+          .then(() => {
+            setMusicUI(true);
+          })
+          .catch(() => {
+            setMusicUI(false);
+            alert("瀏覽器擋住自動播放，請再點一次音樂按鈕。");
+          });
       } else {
         music.pause();
-        playing = false;
-        status.textContent = "🔇";
+        setMusicUI(false);
       }
     }
 
@@ -840,6 +854,7 @@
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("loader").classList.add("hide");
+        tryAutoPlay();
       }, 900);
     });
 
