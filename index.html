@@ -864,18 +864,6 @@ CS student in Taiwan
 Learning languages, coding, and creating things
 `;
 
-    let index = 0;
-
-    function typeEffect() {
-
-      if (index < text.length) {
-
-        document.getElementById("bio").innerHTML += text.charAt(index);
-
-        index++;
-
-        setTimeout(typeEffect, 45);
-      }
     }
 
     window.addEventListener("load", () => {
@@ -883,8 +871,6 @@ Learning languages, coding, and creating things
       setTimeout(() => {
 
         document.getElementById("loader").classList.add("hide");
-
-        typeEffect();
 
       }, 900);
     });
