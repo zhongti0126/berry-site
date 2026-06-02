@@ -776,6 +776,7 @@
 
       document.getElementById("chineseBtn").classList.add("active");
       document.getElementById("englishBtn").classList.remove("active");
+      document.getElementById("japaneseBtn").classList.remove("active");
       document.getElementById("statusText").textContent = "正在學習前端";
       document.getElementById("tags").innerHTML = `
     <span class="tag">資工系</span>
@@ -798,6 +799,7 @@
     function setEnglish() {
       document.getElementById("englishBtn").classList.add("active");
       document.getElementById("chineseBtn").classList.remove("active");
+      document.getElementById("japaneseBtn").classList.remove("active");
       document.getElementById("statusText").textContent = "Currently learning frontend";
       document.getElementById("tags").innerHTML = `
     <span class="tag">CS Student</span>
